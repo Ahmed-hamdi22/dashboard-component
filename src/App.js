@@ -11,6 +11,10 @@ import Signup from './component/Signup'
 import UpdateUser from './component/UpdateUser'
 import Createuser from "./component/Createuser"
 import RequireAuth from "./Auth/RequireAuth"
+import PersistLogin from "./Auth/PersistLogin"
+import Products from "./Products/Products"
+import NewProduct from "./Products/NewProduct"
+import UpDateProduct from "./Context/UpDateProduct"
 
 const App = () => {
   return (
@@ -20,12 +24,17 @@ const App = () => {
         <Route path='/register'element={ <Signup/>}/>
         <Route path='/login'element={ <Login/>}/>
         {/* protected Route */}
-        {/* <Route element={<RequireAuth/>}> */}
+        <Route element={<PersistLogin/>}>
+        <Route element={<RequireAuth/>}>
         <Route path='/dashboard'element={ <Dashboard/>}>
+        <Route  path='products'element={ <Products/>}/>
+        <Route  path='products/create'element={ <NewProduct/>}/>
+        <Route  path='products/:id'element={ <UpDateProduct/>}/>
         <Route  path='user'element={ <User/>}/>
         <Route path='user/:id' element={<UpdateUser/>}/>
         <Route path='user/create' element={<Createuser/>}/>
-        {/* </Route> */}
+        </Route>
+        </Route>
 
         </Route>
       </Routes>
